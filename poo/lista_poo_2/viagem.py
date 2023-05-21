@@ -1,8 +1,9 @@
 class Viagem:
 
-  def __init__(self):
-    self.__distancia = 0
-    self.__tempo = ''
+  def __init__(self, distancia, tempo):
+    self.__distancia, self.__tempo = 0, ''
+    self.set_distancia(distancia)
+    self.set_tempo(tempo)
 
   def set_distancia(self, distancia):
     if distancia > 0: self.__distancia = distancia
@@ -21,24 +22,18 @@ class Viagem:
   def calc_velocidade_media(self):
     return self.__distancia / self.__tempo
 
-
 class UI:
 
   @staticmethod
-  def main():
-    x = Viagem()
+  def main():   
 
-    nome = int(input('Informe a distância percorrida: '))
-    x.set_distancia(nome)
-
+    distancia = float(input('Informe a distância percorrida: '))
     tempo = input('Informe o tempo gasto: ')
     horas, minutos = map(int, tempo.split(':'))
-    x.set_tempo(tempo)
+    tempo = horas + minutos/60
+    x = Viagem(distancia, tempo)
     print(f"{x.get_distancia()} km")
     print(f"{x.get_tempo()} h")
     print(f"{x.get_distancia()} km/h")
-
-    x.calc_velocidade_media()
-
 
 UI.main()

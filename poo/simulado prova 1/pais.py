@@ -40,6 +40,7 @@ class UI:
       nome = input(f'Nome do {i+1}º país: ')
       populacao = int(input(f'População do {i+1}º país: '))
       area = float(input(f'Área do {i+1}º país: '))
+      
       x = Pais(nome, populacao, area)
       lista.append(x)
       

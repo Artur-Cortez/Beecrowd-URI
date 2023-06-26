@@ -32,6 +32,8 @@ class Cliente:
     try:
       if socio.strip() != '':
         self.__socio == socio
+        if self._socio != 'nenhum':
+          self.__limite += socio.get_limite()
       else: raise ValueError('Nome do sócio não pode ser vazio')
     except ValueError: print(ValueError)
 
@@ -51,15 +53,48 @@ class Empresa:
   def listar(self):
     return self.__clientes
 
+class Empresa:
+  def __init__(self, nome):
+    self.__clientes = []
+    self.__nome = nome
+
+  def set_nome(self, nome):
+    try:
+      if nome.strip() != '':
+        self.__nome = nome
+      else: raise ValueError('O nome não pode ser vazio')
+    except ValueError:
+      print(ValueError)
+
+  def get_nome(self):
+    return self.__nome
+  def inserir(self, cliente):
+    self.__clientes.append(cliente)
+
+  def listar(self):
+    return self.__clientes
+
+
 class UI:
   def main():
+    lista_clientes, lista_empresas = [], []
     cmd = '''Comandos
-    add_cliente - Adciona
-    add_empresa
+    add_cliente - Adiciona cliente
+    add_empresa - Adiciona empresa
+    inserir (empresa) (cliente)
     '''
-    entrada = input().lower()
+    entrada = input()
 
-    if entrada == 'add'
+    if entrada == 'add_cliente':
+     novo_cliente = Cliente(input('Nome: '), input('CPF: '), float(input('Limite: ')))
+     lista_clientes.append(novo_cliente)
+    elif entrada == 'add_empresa':
+      nova_empresa = Empresa()
+      lista_empresas.append(nova_empresa)
+    elif 'inserir' in entrada:
+      for empresa in lista_empresas:
+        if empresa.get_nome() == entrada.split()[1]:
+          for 
 
 
 UI.main()

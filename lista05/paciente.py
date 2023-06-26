@@ -37,7 +37,7 @@ class Paciente:
     except ValueError:
       print(ValueError)
 
-  def set_nascimento(self, nascimento):
+  def set_nascimento(self, nascimento): #20/10/2006
     try:
       if nascimento.strip() != '':
         dia, mes, ano = map(int, nascimento.split('/'))
@@ -52,8 +52,12 @@ class Paciente:
 
   def idade(self):
     data_atual = datetime.datetime.now()
+    print(data_atual)
     idade = data_atual - self.__nascimento
+    print(idade)
     anos = idade.days/365
+    print(f'{}')
+    
     meses = math.floor((anos - math.floor(anos))*12)
     return f'Idade: {math.floor(anos)} anos e {meses} meses'
 

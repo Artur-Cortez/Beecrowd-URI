@@ -201,7 +201,7 @@ class UI:
           else: print(' Música não encontrada\n')
             
       elif entrada == 'playlist_info':
-        teste = input(' Insira o nome da playlist (case sensitive):\n')
+        teste = input(' Insira o nome da playlist (case sensitive):\n -->')
         for playlist in playlists_database:
           if playlist.get_nome() == teste:
             playlist_selecionada = playlist

@@ -52,11 +52,11 @@ class Paciente:
 
   def idade(self):
     data_atual = datetime.datetime.now()
-    print(data_atual)
+    print(f'Data atual: {data_atual}')
     idade = data_atual - self.__nascimento
-    print(idade)
+    print(f'{idade}')
     anos = idade.days/365
-    print(f'{}')
+    print(f'Anos: {anos}')
     
     meses = math.floor((anos - math.floor(anos))*12)
     return f'Idade: {math.floor(anos)} anos e {meses} meses'

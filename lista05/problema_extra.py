@@ -1,10 +1,17 @@
 import datetime
-class Amigo:
-  def __init__(self, nome, nasc):
-    self.__nome, self.__nasc = '', datetime.datetime(2006, 9, 8)
 
-    self.set_nome(nome)
-    self.set_nasc(nasc)
+# self é uma palavra-chave para se referir a coisas do proprio objeto
+
+# construtor 
+
+class Amigo:
+  
+  def __init__(self, nome, nasc):
+    
+    self.__nome, self.__nasc = '', ''
+
+    # self.set_nome(nome)
+    # self.set_nasc(nasc)
 
   def set_nome(self, nome):
     try:
@@ -30,15 +37,17 @@ class UI:
   def main():
     idade_do_mais_novo = datetime.datetime(1800, 10, 10)
     amigo_mais_novo = 0
+
+    ncasos = int(input('Quantos amigos:'))
     
-    for i in range(2):
+    for i in range(ncasos):
       amigo = Amigo(input('Nome do amigo: '), input('Nasc (xx/xx/xxxx): '))
 
       if amigo.get_nasc() > idade_do_mais_novo:
         amigo_mais_novo = amigo        
         idade_do_mais_novo = amigo.get_nasc()
       
-    print(f'O amigo mais novo é {amigo_mais_novo.get_nome()} e a idade dele é {idade_do_mais_novo}')
+    print(f'O amigo mais novo é {amigo_mais_novo.get_nome()} e a idade dele é {idade_do_mais_novo.strftime("%d/%m/%Y")}')
 
 UI.main()
     

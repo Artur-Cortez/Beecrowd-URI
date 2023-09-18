@@ -369,7 +369,12 @@ class UI:
     hor_escolhido.set_idServico(id_serv)
     hor_escolhido.set_confirmado(True)
     NHorario.salvar()
-    
+
+
+  @classmethod
+  def HorarioAtualizar(cls):
+    cls.HorarioAbrir()
+    NHorario.salvar()
 
   @classmethod
   def HorarioExcluir(cls):
@@ -380,19 +385,27 @@ class UI:
 
   @classmethod
   def HorariosCriar(cls):
+    data = datetime.datetime.strptime(input('Insira a data: '), '%d/%m/%Y')
 
+    h_inicial, m_inicial = map(int, input('Insira a hora inicial xx:xx : ').split(':'))
     
+    hm_inicial = datetime.timedelta(hours=h_inicial, minutes=m_inicial)
+    data1 = data + hm_inicial
     
-    fuso = datetime.timedelta(hours=-3)
-   
+    h_final, m_final = map(int, input('Insira a hora final xx:xx :').split(':'))
+    hm_final = datetime.timedelta(hours=h_final, minutes=m_final)
+    data2 = data + hm_final
     
+    duracao = int(input('Qual a duração dos horários: '))
     
-    for i in range(8, 18):
-      hor = i
-      nova_data = data_atual.replace(hour=hor, minute=0, second=0, microsecond=0)
+    duracao = datetime.timedelta(minutes=duracao)
+    
+    var = data1
 
-      horario = Horario(0, nova_data, False, 0, 0)
+    while var < data2:
+      horario = Horario(0, var, False, 0, 0)
       NHorario.inserir(horario)
+      var += duracao
     NHorario.salvar()
-     
+   
 UI.Main()

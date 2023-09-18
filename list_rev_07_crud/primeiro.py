@@ -157,6 +157,8 @@ class NHorario:
   def atualizar(cls, id, data, confirmado, idCliente, idServico):
     h = cls.listar_id(id)
 
+    h.set_data(data)
+
     h.set_confirmado(confirmado)
     h.set_idCliente(idCliente)
     h.set_idServico(idServico)
@@ -374,7 +376,15 @@ class UI:
   @classmethod
   def HorarioAtualizar(cls):
     cls.HorarioAbrir()
-    NHorario.salvar()
+
+    cls.HorarioListar()
+    id_hor = int(input('Insira o id do horário: '))
+
+    n_data = datetime.datetime.strptime(input('Insira a nova data'), '%d/%m/%Y %H:%M')
+    confirmado = input('Confirmação digite S ou N: ')
+    
+    
+    NHorario.atualizar(id_hor, n_data, )
 
   @classmethod
   def HorarioExcluir(cls):

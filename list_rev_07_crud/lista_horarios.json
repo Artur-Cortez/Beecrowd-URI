@@ -50,9 +50,9 @@
     },
     {
         "_Horario__id": 8,
-        "_Horario__data": "2023-05-29 11:30:00",
-        "_Horario__confirmado": false,
-        "_Horario__idCliente": 0,
-        "_Horario__idServico": 0
+        "_Horario__data": "2023-05-30 13:00:00",
+        "_Horario__confirmado": true,
+        "_Horario__idCliente": 1,
+        "_Horario__idServico": 1
     }
 ]

@@ -124,7 +124,8 @@ class NCliente:
 
   @classmethod
   def abrir(cls):
-   with open("list_rev_07_crud/lista_clientes.json", "r") as arquivo:
+    cls.__clientes = []
+    with open("list_rev_07_crud/lista_clientes.json", "r") as arquivo:
      clientes_json = json.load(arquivo)
      for obj in clientes_json:
        c = Cliente(obj["_Cliente__id"], obj["_Cliente__nome"], obj["_Cliente__email"], obj["_Cliente__fone"])
@@ -180,7 +181,8 @@ class NHorario:
 
   @classmethod
   def abrir(cls):
-   with open("list_rev_07_crud/lista_horarios.json", "r") as arquivo:
+    cls.__horarios = []
+    with open("list_rev_07_crud/lista_horarios.json", "r") as arquivo:
      horarios_json = json.load(arquivo)
      for obj in horarios_json:
 
@@ -225,7 +227,8 @@ class NServico:
   
   @classmethod
   def abrir(cls):
-   with open("list_rev_07_crud/lista_servicos.json", "r") as arquivo:
+    cls.__servicos = []
+    with open("list_rev_07_crud/lista_servicos.json", "r") as arquivo:
      
      horarios_json = json.load(arquivo)
      
@@ -388,6 +391,7 @@ class UI:
     n_idServ = int(input('Insira o novo id do serv: '))
     
     NHorario.atualizar(id_hor, n_data, confirmado, n_idcli, n_idServ)
+    NHorario.salvar()
 
   @classmethod
   def HorarioExcluir(cls):

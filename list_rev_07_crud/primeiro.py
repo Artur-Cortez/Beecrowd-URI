@@ -382,9 +382,12 @@ class UI:
 
     n_data = datetime.datetime.strptime(input('Insira a nova data'), '%d/%m/%Y %H:%M')
     confirmado = input('Confirmação digite S ou N: ')
+    if confirmado == 'S': confirmado = True
+    else: confirmado = False
+    n_idcli = int(input('Insira o novo id do cli: '))
+    n_idServ = int(input('Insira o novo id do serv: '))
     
-    
-    NHorario.atualizar(id_hor, n_data, )
+    NHorario.atualizar(id_hor, n_data, confirmado, n_idcli, n_idServ)
 
   @classmethod
   def HorarioExcluir(cls):

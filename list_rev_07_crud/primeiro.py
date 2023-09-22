@@ -241,6 +241,11 @@ class NServico:
      with open("list_rev_07_crud/lista_servicos.json", "w") as arquivo:
        json.dump(cls.__servicos, arquivo, indent=4, default = vars)
 
+  @classmethod
+  def excluir(cls, id):
+    s = cls.listar_id(id)
+    cls.__servicos.remove(s)
+
 class UI:
   @classmethod
   def Main(cls):
@@ -402,27 +407,30 @@ class UI:
 
   @classmethod
   def HorariosCriar(cls):
-    data = datetime.datetime.strptime(input('Insira a data: '), '%d/%m/%Y')
+    data_txt = input('Data: ')
+    data = datetime.datetime.strptime(data_txt, '%d/%m/%Y')
+    while True:
+      hora_ini_txt = input('Hora inicial: ')
+      hora_ini = datetime.datetime.strptime(hora_ini_txt, '%H:%M')
+      hora_fin_txt = input('Hora final: ')
+      hora_fin = datetime.datetime.strptime(hora_fin_txt, '%H:%M')
 
-    h_inicial, m_inicial = map(int, input('Insira a hora inicial xx:xx : ').split(':'))
-    
-    hm_inicial = datetime.timedelta(hours=h_inicial, minutes=m_inicial)
-    data1 = data + hm_inicial
-    
-    h_final, m_final = map(int, input('Insira a hora final xx:xx :').split(':'))
-    hm_final = datetime.timedelta(hours=h_final, minutes=m_final)
-    data2 = data + hm_final
-    
-    duracao = int(input('Qual a duração dos horários: '))
-    
-    duracao = datetime.timedelta(minutes=duracao)
-    
-    var = data1
+      if hora_ini >= hora_fin:
+        print('A hora inicial deve ser menor que a hora final.')
+      else:
+        contador_txt = input('Contador: ')
+        contador = datetime.datetime.strptime(contador_txt, '%H:%M')
 
-    while var < data2:
-      horario = Horario(0, var, False, 0, 0)
-      NHorario.inserir(horario)
-      var += duracao
-    NHorario.salvar()
-   
+        while hora_ini <= hora_fin:
+          data_e_horario = datetime.datetime(data.year, data.month, data.day,
+                                             hora_ini.hour, hora_ini.minute)
+  
+          horario = Horario(0, data_e_horario, False, 0, 0)
+          NHorario.inserir(horario)
+  
+          hora_ini += datetime.timedelta(minutes=contador.minute,
+                                         hours=contador.hour)
+
+      NHorario.salvar()
+      break
 UI.Main()

@@ -4,5 +4,11 @@
         "_Servico__descricao": "Progressiva",
         "_Servico__valor": 90.0,
         "_Servico__duracao": "dsioihsoig"
+    },
+    {
+        "_Servico__id": 2,
+        "_Servico__descricao": "corte",
+        "_Servico__valor": 30.0,
+        "_Servico__duracao": "30"
     }
 ]

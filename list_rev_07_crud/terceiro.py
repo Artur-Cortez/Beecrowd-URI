@@ -1,4 +1,5 @@
 import datetime
+
 from primeiro import Horario
 
 lista = []
